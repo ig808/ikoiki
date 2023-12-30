@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+   body {
+      font-family: 'Digital-7', sans-serif; 
+      /* Change the font family as needed */
+    }
+
+    p {
+      text-align: center;
+      font-size: 100px;
+      margin-top: 0px;
+    }
+    
+    #link a {
+      font-size: 20px; /* Adjust the font size as needed */
+    }
+  </style>
+</head>
+
+<body>
+
+  <p id="demo"></p>
+  <p id="link"></p>
+
+  <script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Dec 30, 2024 18:24:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+      // Get today's date and time
+      var now = new Date().getTime();
+
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+
+      // If the count down is over, display "00:00:00:00" and a link to another website
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = '00:00:00:00';
+        document.getElementById("link").innerHTML = '<a href="https://example.com" target="_blank">Visit Another Website</a>';
+        // You can replace "https://example.com" with the actual URL you want to link to.
+        // Additionally, you can customize the link text as needed.
+      } else {
+        // Time calculations for days, hours, minutes, and seconds
+        var days = padNumber(Math.floor(distance / (1000 * 60 * 60 * 24)));
+        var hours = padNumber(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+        var minutes = padNumber(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+        var seconds = padNumber(Math.floor((distance % (1000 * 60)) / 1000));
+
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML = days + ":" + hours + ":" +
+          minutes + ":" + seconds + "";
+      }
+    }, 1000);
+
+    // Function to pad a number with a leading zero if it's less than 10
+    function padNumber(number) {
+      return (number < 10) ? "0" + number : number;
+    }
+  </script>
+
+</body>
+
+</html>
